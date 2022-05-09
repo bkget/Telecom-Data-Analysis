@@ -6,7 +6,7 @@ class DataFrameCleaning():
         self.df = df.copy()
         print('Automation in Action...!!!')
     
-    
+
     def get_column_with_many_null(self):
         '''
         Return List of Columns which contain more than 30% of null values
@@ -33,4 +33,14 @@ class DataFrameCleaning():
 
         self.df.drop(columns, axis=1, inplace=True)
 
-    
+
+    def convert_to_datetime(self, df):
+        """
+        convert start and end column to datetime
+        """
+
+        df['Start'] = pd.to_datetime(df['Start'])
+        df['End'] = pd.to_datetime(df['End'])
+
+        return df
+
