@@ -44,3 +44,11 @@ class DataFrameCleaning():
 
         return df
 
+
+    def drop_duplicate(self, df):
+        """
+        drop duplicate rows
+        """
+        df.drop_duplicates(inplace=True)
+
+        return df
