@@ -19,7 +19,7 @@ class DataFrameInfo():
 
         print(self.df.info())
 
-        
+
     def null_column_percentage(self):
         '''
         Display Total Null percentage of the Data Frame Columns
@@ -31,3 +31,11 @@ class DataFrameInfo():
         null_size = (self.df.isnull().sum()).sum()
         percentage = round((null_size / df_size) * 100, 2)
         print(f"The Telecom data contains { percentage }% missing values.")
+        
+
+    def get_null_counts(self):
+        '''
+        Display Null Counts of each column
+        '''
+
+        print(self.df.isnull().sum())
