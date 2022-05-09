@@ -31,7 +31,7 @@ class DataFrameInfo():
         null_size = (self.df.isnull().sum()).sum()
         percentage = round((null_size / df_size) * 100, 2)
         print(f"The Telecom data contains { percentage }% missing values.")
-        
+
 
     def get_null_counts(self):
         '''
@@ -39,3 +39,10 @@ class DataFrameInfo():
         '''
 
         print(self.df.isnull().sum())
+        
+
+    def skewness(self):
+        '''
+        Display The skew value of each columns 
+        '''
+        print(self.df.skew())
