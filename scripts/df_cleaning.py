@@ -59,3 +59,17 @@ class DataFrameCleaning():
         Drop Rows of specified columns, which contain null values
         '''
         self.df.dropna(subset=columns, inplace=True)
+
+    
+    def fill_numerical_column(self, column):
+        '''
+        Fill Numerical null values with mean or median based on the skewness of the column
+        '''
+ 
+        for col in column:
+            skewness = self.df[col].skew() 
+            if((-1 < skewness) and (skewness < -0.5)):
+                self.df[col] = self.df[col].fillna(self.df[col].mean()) 
+
+            else:
+                self.df[col] = self.df[col].fillna(self.df[col].median())
