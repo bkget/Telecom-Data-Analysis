@@ -22,6 +22,6 @@ class UserOverviewScript():
 
         for column in top_3_manufacturers.index:
             result = manufacturers.get_group(column).groupby("Handset Type")['MSISDN/Number'].nunique().nlargest(5)
-            print(f"_______ { column } _______")
+            print(f">>>> { column } <<<<")
             print(result)
-            print()
+            print() 
