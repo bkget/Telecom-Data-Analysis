@@ -56,8 +56,6 @@ class DataFrameCleaning():
 
     def drop_rows(self, columns):
         '''
-        Drop Rows of specified columns, which contain null values 
+        Drop Rows of specified columns, which contain null values
         '''
         self.df.dropna(subset=columns, inplace=True)
-
-
