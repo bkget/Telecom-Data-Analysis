@@ -25,3 +25,11 @@ def plot_scatter(df: pd.DataFrame, x_col: str, y_col: str, title: str, hue: str,
     plt.xticks(fontsize=14)
     plt.yticks(fontsize=14)
     plt.show()
+
+
+def plot_heatmap(df: pd.DataFrame, title: str, cbar=False) -> None:
+    plt.figure(figsize=(15, 12))
+    sns.heatmap(df, annot=True, cmap='viridis', vmin=0,
+                vmax=1, fmt='.2f', linewidths=.7, cbar=cbar)
+    plt.title(title, size=18, fontweight='bold')
+    plt.show()
