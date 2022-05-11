@@ -38,3 +38,17 @@ class UserOverviewScript():
             Total_MB.append(i)
 
         return Total_MB
+
+
+    def convert_ms_to_sec(self, column):
+        """
+            This function takes the dataframe and the column which has the bytes values
+            returns the megabytesof that value            
+        """        
+        
+        Total_sec = []
+        for i in column.values:
+            i = (i / 1000) % 60
+            Total_sec.append(i)
+
+        return Total_sec        
