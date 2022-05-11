@@ -2,6 +2,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import plotly.express as px
 import pandas as pd
+import numpy as np
 
 def hist(df:pd.DataFrame, column:str, color:str)->None:
     plt.figure(figsize=(9, 7))
@@ -33,3 +34,9 @@ def plot_heatmap(df: pd.DataFrame, title: str, cbar=False) -> None:
                 vmax=1, fmt='.2f', linewidths=.7, cbar=cbar)
     plt.title(title, size=18, fontweight='bold')
     plt.show()
+    
+
+def fix_outlier(df, column):
+    df[column] = np.where(df[column] > df[column].quantile(0.95), df[column].mode(),df[column])
+    
+    return df[column]
