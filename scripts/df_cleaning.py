@@ -73,3 +73,13 @@ class DataFrameCleaning():
 
             else:
                 self.df[col] = self.df[col].fillna(self.df[col].median())
+
+    
+    def fill_categorical_columns(self, column):
+        '''
+        Fill Categorical null values with column Mode
+        '''
+ 
+        for col in column:
+            mode = self.df[col].mode()[0]
+            self.df[col] = self.df[col].fillna(mode)
