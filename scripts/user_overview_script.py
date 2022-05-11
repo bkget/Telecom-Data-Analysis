@@ -25,3 +25,16 @@ class UserOverviewScript():
             print(f">>>> { column } <<<<")
             print(result)
             print() 
+
+    def convert_bytes_to_megabytes(self, column):
+        """
+            This function takes the dataframe and the column which has the bytes values
+            returns the megabytesof that value            
+        """        
+        megabyte = 1*10e+5
+        Total_MB = []
+        for i in column.values:
+            i = i / megabyte
+            Total_MB.append(i)
+
+        return Total_MB
