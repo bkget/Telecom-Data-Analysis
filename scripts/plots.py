@@ -42,3 +42,12 @@ def fix_outlier(df, column):
     df[column] = np.where(df[column] > df[column].quantile(0.95), df[column].mode(),df[column])
     
     return df[column]
+
+
+def plot_bar(column, title, xlabel, ylabel):
+    plt.figure(figsize=(10,5))
+    sns.barplot(x=column.index, y=column.values) 
+    plt.title(title, size=14, fontweight="bold")
+    plt.xlabel(xlabel, size=13, fontweight="bold") 
+    plt.ylabel(ylabel, size=13, fontweight="bold")
+    plt.show() 
