@@ -1,8 +1,13 @@
-import seaborn as sns
-import matplotlib.pyplot as plt
-import plotly.express as px
 import pandas as pd
 import numpy as np
+import seaborn as sns 
+import matplotlib.pyplot as plt
+from IPython.display import Image
+import plotly.express as px
+import plotly.io as pio
+from plotly.subplots import make_subplots
+import plotly.graph_objects as go  
+
 
 def hist(df:pd.DataFrame, column:str, color:str)->None:
     plt.figure(figsize=(9, 7))
