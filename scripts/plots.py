@@ -68,3 +68,9 @@ def mult_hist(sr, rows, cols, title_text, subplot_titles, interactive=False):
         fig.show()
     else:
         return Image(pio.to_image(fig, format='png', width=1200))
+
+
+def plot_dist(df: pd.DataFrame, column: str):
+    plt.figure(figsize=(9, 7))
+    sns.distplot(df).set_title(f'Distribution of {column}')
+    plt.show()
