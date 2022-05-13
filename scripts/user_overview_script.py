@@ -40,10 +40,23 @@ class UserOverviewScript():
         return Total_MB
 
 
-    def convert_ms_to_sec(self, column):
+    def convert_bytes_to_kbytes(self, column):
         """
             This function takes the dataframe and the column which has the bytes values
-            returns the megabytesof that value            
+            returns the kilobytes of that value            
+        """        
+        Total_kb = []
+        for i in column.values:
+            i = i / 1024
+            Total_kb.append(i)
+
+        return Total_kb
+
+
+    def convert_ms_to_sec(self, column):
+        """
+            This function takes the dataframe and the millisecond column values
+            returns the second equivalence          
         """        
         
         Total_sec = []
@@ -51,4 +64,4 @@ class UserOverviewScript():
             i = (i / 1000) % 60
             Total_sec.append(i)
 
-        return Total_sec        
+        return Total_sec
