@@ -55,6 +55,7 @@ def plot_bar(column, title, xlabel, ylabel):
     plt.title(title, size=14, fontweight="bold")
     plt.xlabel(xlabel, size=13, fontweight="bold") 
     plt.ylabel(ylabel, size=13, fontweight="bold")
+    plt.xticks(rotation=90)
     plt.show() 
 
 def mult_hist(sr, rows, cols, title_text, subplot_titles, interactive=False):
