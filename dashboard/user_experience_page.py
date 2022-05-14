@@ -32,3 +32,12 @@ def getExperienceData():
         'Total_Avg_TCP': 'sum'})
     return user_experience
 
+
+def hist(sr, interactive=False):
+    x = ["Id: " + str(i) for i in sr.index]
+    fig = px.histogram(x=x, y=sr.values)
+    if(interactive):
+        st.plotly_chart(fig)
+    else:
+        st.image(pio.to_image(fig, format='png', width=1200))
+
