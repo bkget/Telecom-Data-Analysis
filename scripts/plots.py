@@ -76,3 +76,12 @@ def plot_hist(df: pd.DataFrame, column: str, color: str) -> None:
     sns.displot(data=df, x=column, color=color, kde=True, height=7, aspect=2)
     plt.title(f'Distribution of {column}', size=20, fontweight='bold')
     plt.show()
+
+
+def scatter2d(df, x, y, c=None, s=None, mx=None, my=None, af=None, fit=None, interactive=False):
+    fig = px.scatter(df, x=x, y=y, color=c, size=s, marginal_y=my,
+                     marginal_x=mx, trendline=fit, animation_frame=af)
+    if(interactive):
+        st.plotly_chart(fig)
+    else:
+        st.image(pio.to_image(fig, format='png', width=1200))
