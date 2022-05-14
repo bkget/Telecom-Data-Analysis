@@ -41,3 +41,37 @@ def hist(sr, interactive=False):
     else:
         st.image(pio.to_image(fig, format='png', width=1200))
 
+def plot10(df):
+    col = st.selectbox("Compute & list 10 of the top, bottom and most frequent: from", (
+        [
+            "TCP values",
+            "Duration", 
+            "Throughput values"
+        ]))
+    if col == "TCP values":
+        sorted_by_tcp = df.sort_values('Total_Avg_TCP', ascending=False)
+        return plot10Sorted(sorted_by_tcp, 'Total_Avg_TCP')
+
+    elif col == "RTT values":
+        sorted_by_rtt = df.sort_values('Total_Avg_RTT', ascending=False)
+        return plot10Sorted(sorted_by_rtt, 'Total_Avg_RTT')  
+
+    else:
+        sorted_by_tp = df.sort_values('Total_Avg_Bearer_TP', ascending=False)
+        return plot10Sorted(sorted_by_tp, 'Total_Avg_Bearer_TP')
+
+
+def plot10Sorted(df, col_name):
+    col = st.selectbox("Select from: from", (
+        [
+            "Top 10",
+            "Last 10",
+        ]))
+    
+    if col == "Top 10":
+        sat_top_10 = df.head(10)[col_name]
+        return hist(sat_top_10)
+    else:
+        sat_last_10 = df.tail(10)[col_name]
+        return hist(sat_last_10)
+
