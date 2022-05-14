@@ -33,3 +33,14 @@ def getExperienceModel():
         kmeans = pickle.load(f)
     return kmeans
 
+def getUserEngagement(less_engagement):
+    eng_df = getEngagemetData().copy()
+    eng_model = getEngagemetModel() 
+    eng_df = eng_df.set_index('Customer_Id')[
+        ['Session_Frequency', 'Duration', 'Total_Data_Volume']]
+        
+    distance = eng_model.fit_transform(eng_df)
+    distance_from_less_engagement = list(
+        map(lambda x: x[less_engagement], distance))
+    eng_df['Engagement_Score'] = distance_from_less_engagement
+    return eng_df
