@@ -20,7 +20,7 @@ This repository aims to address the following points:
 cd Telecom_data_analysis
 pip install -r requirements.txt`
 
-### Contributing 
+### Contribution 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are greatly appreciated.
 
 * Fork the Project
