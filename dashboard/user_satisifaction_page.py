@@ -56,3 +56,31 @@ def getUserExperience(worst_experience):
         map(lambda x: x[worst_experience], distance))
     exp_df['Experience_Score'] = distance_from_worst_experience
     return exp_df
+
+def getSatisfactionData(less_engagement, worst_experience):
+    user_engagement = getUserEngagement(less_engagement)
+    user_experience = getUserExperience(worst_experience)
+
+    user_engagement.reset_index(inplace=True)
+    user_experience.reset_index(inplace=True)
+
+    user_id_engagement = user_engagement['Customer_Id'].values
+    user_id_experience = user_experience['Customer_Id'].values
+
+    user_intersection = list(
+        set(user_id_engagement).intersection(user_id_experience))
+
+    user_engagement_df = user_engagement[user_engagement['Customer_Id'].isin(
+        user_intersection)]
+    
+    user_experience_df = user_experience[user_experience['Customer_Id'].isin(
+        user_intersection)]
+    
+    user_df = pd.merge(user_engagement_df, user_experience_df, on='Customer_Id')
+    user_df['Satisfaction_Score'] = (
+        user_df['Engagement_Score'] + user_df['Experience_Score'])/2
+    sat_score_df = user_df[['Customer_Id', 'Engagement_Score',
+                            'Experience_Score', 'Satisfaction_Score']]
+    sat_score_df = sat_score_df.set_index('Customer_Id')
+    return sat_score_df
+
