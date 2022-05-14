@@ -44,3 +44,15 @@ def getUserEngagement(less_engagement):
         map(lambda x: x[less_engagement], distance))
     eng_df['Engagement_Score'] = distance_from_less_engagement
     return eng_df
+
+def getUserExperience(worst_experience):
+    exp_df = getExperienceData().copy()
+    exp_model = getExperienceModel()
+    exp_df = exp_df.set_index('Customer_Id')[
+        ["Total_Avg_RTT", "Total_Avg_Bearer_TP", "Total_Avg_TCP"]] 
+        
+    distance = exp_model.fit_transform(exp_df)
+    distance_from_worst_experience = list(
+        map(lambda x: x[worst_experience], distance))
+    exp_df['Experience_Score'] = distance_from_worst_experience
+    return exp_df
