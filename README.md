@@ -1,7 +1,7 @@
 ## Telecom Data Analysis
 
 ### Overview
-This repository aims to make a detailed analysis of a Telecommunication industry, TellCo. We will try to understand the fundamentals of the business, understand the data, and identify the opportunities to drive profitability by changing the focus of which products or services are being offered. The analyses of users’ experience, engagement, and satisfaction is made. 
+This repository aims to make a detailed analysis of a Telecommunication industry, TellCo, customers data. I have tried to understand the fundamentals of the business, the data, and identify the opportunities to drive profitability by changing the focus of which products or services are being offered. The analyses of users’ experience, engagement, and satisfaction are the major tasks covered with this project. 
 
 ### Getting Started
 This repository aims to address the following points:
