@@ -84,3 +84,22 @@ def getSatisfactionData(less_engagement, worst_experience):
     sat_score_df = sat_score_df.set_index('Customer_Id')
     return sat_score_df
 
+def app():
+    st.title('User Satisfaction Analysis')
+    num1 = st.sidebar.selectbox('Select the cluster with less Engagement', range(0, 20))
+    num2 = st.sidebar.selectbox('Select the cluster with worst Experience', range(0, 20))
+    if st.sidebar.button('Ok'):
+        df = getSatisfactionData(num1, num2)
+
+        st.header("Top 10 customers per users Satisifaction")
+        sorted_by_satisfaction = df.sort_values(
+            'Satisfaction_Score', ascending=False)
+        sat_top_10 = sorted_by_satisfaction['Satisfaction_Score'].head(10)
+        
+        st.markdown(
+        '''
+            Plot showing relationship between Engagement score and Satisfaction score.        
+        ''')
+        plots.scatter2d(df, 'Engagement_Score', 
+                'Experience_Score', 'Satisfaction_Score')
+
