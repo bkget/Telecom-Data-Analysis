@@ -16,9 +16,11 @@ This repository aims to address the following points:
 * User Satisfaction analysis
 
 ### Install
-`git clone https://github.com/bkget/Telecom_data_analysis
+```
+git clone https://github.com/bkget/Telecom_data_analysis
 cd Telecom_data_analysis
-pip install -r requirements.txt`
+pip install -r requirements.txt
+```
 
 ### Contribution 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are greatly appreciated.
