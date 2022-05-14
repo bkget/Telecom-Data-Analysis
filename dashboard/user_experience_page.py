@@ -75,3 +75,77 @@ def plot10Sorted(df, col_name):
         sat_last_10 = df.tail(10)[col_name]
         return hist(sat_last_10)
 
+def app():
+    st.title('User Experience Analytics')
+    st.header("Top 10 customers per Experience Metric")
+    user_experience = getExperienceData().copy() 
+    plot10(user_experience)
+
+    st.header("Clustering customers based on their Experience")
+    st.markdown(
+    '''
+        Here we will try to cluster customers based on their experience.
+        To find the optimized value of k, first, let's plot an elbow curve graph.
+        To start, choose the number of times to runs k-means.
+    ''')
+    num = st.selectbox('Select', range(0, 20))
+    select_num = 1
+
+    if(num != 0): 
+        select_num = st.selectbox('Select', range(1, num+1))
+
+    if(select_num != 1):
+        st.markdown(
+        '''
+            Based on the image above choose the number of clusters
+        ''')
+        kmeans = KMeans(n_clusters=select_num, random_state=0).fit(user_experience)
+        user_experience["Cluster"] = kmeans.labels_
+
+        st.markdown(
+        '''
+            Number of elements in each cluster
+        ''')
+        st.write(user_experience['Cluster'].value_counts())
+
+        show2D = False
+        if st.button('Show 2D visualization'):
+            if(show2D):
+                show2D = False
+            else:
+                show2D = True
+
+        if(show2D):
+            st.markdown(
+                '''
+                2D visualization of cluster
+            ''')
+                    
+            plots.scatter2d(user_experience, x='Total_Avg_TCP', y="Total_Avg_RTT", c='Cluster', s='Total_Avg_Bearer_TP') 
+
+        show3D = False
+        if st.button('Show 3D visualization'):
+            if(show3D):
+                show3D = False
+            else:
+                show3D = True
+        if(show3D):
+            st.markdown(
+                '''
+                3D visualization of cluster
+            ''')
+
+            plots.scatter3D(user_engagement, 'Total_Avg_TCP', "Total_Avg_RTT", 'Total_Avg_Bearer_TP', 'Cluster', interactive=True)
+
+        st.warning(
+            'Remember the cluster with the worst experience. we need that for satisfaction analysis')
+        st.markdown(
+        '''
+            Save the model for satisfaction analysis
+        ''')
+        if st.button('Save CSV'):
+            helper.save_csv(user_experience,
+                            '../data/user_experiance.csv', index=True)
+
+            with open("../models/user_experiance.pkl", "wb") as f:
+                pickle.dump(kmeans, f)
