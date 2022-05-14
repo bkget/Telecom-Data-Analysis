@@ -85,3 +85,15 @@ def scatter2d(df, x, y, c=None, s=None, mx=None, my=None, af=None, fit=None, int
         st.plotly_chart(fig)
     else:
         st.image(pio.to_image(fig, format='png', width=1200))
+
+
+def scatter3D(df, x, y, z, c=None, s=None, mx=None, my=None, af=None, fit=None, rotation=[1, 1, 1], interactive=False):
+    fig = px.scatter_3d(df, x=x, y=y, z=z, color=c, size=s,
+                        animation_frame=af, size_max=18)
+
+    fig.update_layout(scene=dict(camera=dict(eye=dict(x=rotation[0], y=rotation[1], z=rotation[2]))),
+                      )
+    if(interactive):
+        st.plotly_chart(fig)
+    else:
+        st.image(pio.to_image(fig, format='png', width=1200))
